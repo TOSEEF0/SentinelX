@@ -1,0 +1,32 @@
+# Environment Variables (Contains sensitive API keys & credentials)
+.env
+.env.local
+.env.*.local
+
+# SQLite Database
+*.db
+sentinelx.db
+sentinelx.db-journal
+
+# Reports (Assessment results & exports)
+reports/sentinelx_report_*.pdf
+reports/sentinelx_report_*.json
+reports/test_*.pdf
+reports/test_*.json
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Operating System & IDE metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

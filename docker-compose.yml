@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  # Official OWASP ZAP Security Scanner Daemon
+  zap:
+    image: zaproxy/zap-stable:latest
+    container_name: sentinelx-zap
+    restart: unless-stopped
+    command: zap.sh -daemon -port 8080 -host 0.0.0.0 -config api.key=sentinelx_zap_internal_api_key_8821 -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks:
+      - sentinelx-net
+
+  # SentinelX Web Security Auditor Application
+  sentinelx:
+    build: .
+    container_name: sentinelx-app
+    restart: unless-stopped
+    depends_on:
+      - zap
+    ports:
+      - "5000:5000"
+    environment:
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=5000
+      - ZAP_URL=http://zap:8080
+      - ZAP_API_KEY=sentinelx_zap_internal_api_key_8821
+      - ALLOW_LOCAL_TESTING=True
+      - AI_PROVIDER=deterministic
+    volumes:
+      - ./reports:/app/reports
+      - ./sentinelx.db:/app/sentinelx.db
+    networks:
+      - sentinelx-net
+
+networks:
+  sentinelx-net:
+    driver: bridge
