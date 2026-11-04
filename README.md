@@ -1,4 +1,4 @@
-# SentinelX — AI-Powered Web Security Auditor
+# SentinelX — AI-Powered Web Security Auditor [DIGI GUARD]
 
 SentinelX is a professional, evidence-based web application security auditing platform built for security engineers, DevSecOps pipelines, and compliance assessors. It integrates the official **OWASP ZAP (Zed Attack Proxy)** REST engine alongside the high-performance **SentinelX Native Security Auditor** to deliver verified, evidence-backed vulnerability assessments.
 
